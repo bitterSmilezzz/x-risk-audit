@@ -75,11 +75,15 @@ severity 定义在 `x-risk-audit/rules/sensitive-rules.json` 每条规则的 `se
 
 ## 5. 实现说明（踩过的点）
 
-- **IAB evaluate 是隔离 JS 世界**：自动化通道只能读 DOM，读不到页面的 `window.XRA`。集成测试因此把自检结果写进 DOM 节点（`#xra-test-result[data-json]`）再读；测试页的 DOM 变更也必须由页面自己的脚本做。
-- **file:// 被 IAB 导航策略拦截**：测试走本地 `python3 -m http.server`。
+- **真实 x.com 实测（2026-10-01，Tabbit 已登录会话）**：内容脚本初始扫描、滚动加载新推文标记、虚拟滚动移除旧标记均正常；合成探针推文验证 Observer 在真实 X DOM 上触发（标"中风险 3"）。首屏命中案例：刷粉模板帖（低）、PPVPN 住宅 IP 推广帖（高， censorship-bypass 规则经 "PPVPN" 子串命中 "vpn"，归类正确）。
+- **X 页面 CSP 带 nonce，`page.addScriptTag` 注入被拦**：内容脚本之所以走扩展机制（隔离世界、CSP 豁免）正是这个原因；想在真实站点上验证只能正规加载扩展。
+- **chrome:// 页面 automation 导航被 Tabbit 策略拦截**：扩展安装（开发者模式 + 加载已解包 + 文件夹选择）只能由用户手动完成；安装后内容脚本随页面自动注入，自动化侧只需读 DOM 标记验证。
+- **IAB evaluate 是隔离 JS 世界**：自动化通道只能读 DOM，读不到页面的 `window.XRA`。本地集成测试因此把自检结果写进 DOM 节点（`#xra-test-result[data-json]`）再读；测试页的 DOM 变更也必须由页面自己的脚本做。
+- **file:// 被 IAB 导航策略拦截**：本地测试走 `python3 -m http.server`。
 - **规则 JSON 的 `(?i)` 内联标志 JS 不支持**：统一走 flags 字段。
 - **marker.js 修过一次重复声明**（`uniqLabels`）：`node --check` 全部 7 个 JS 文件是发布前必跑项。
 - **推文 ID 19 位 vs 身份证 18 位**：JS/Python 双侧都有长度与 Luhn/日期校验，fixtures 有专项用例。
+- **加载实例与仓库的关系**：`~/extensions/x-risk-audit` 是从仓库 `extension/` rsync 出的加载实例；Chrome 会监听目录变化自动重载扩展，改规则后 rsync 一次再刷新 x.com 页面即可（见 README）。
 
 ## 6. 已知风险
 

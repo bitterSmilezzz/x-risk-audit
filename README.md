@@ -73,6 +73,11 @@ python3 x-risk-audit/scripts/test_scan.py   # Python 扫描器冻结预期
 python3 extension/test/make-fixture-page.py # 生成仿 X 集成测试页（再起本地 http 服务打开验证）
 ```
 
+**已在真实 x.com 实测通过**（2026-10-01，已登录会话）：初始扫描、滚动加载新推文实时标记、虚拟滚动旧标记移除、Observer 合成探针均正常。
+
+**日常同步**（改规则后）：仓库内 `bash extension/sync-rules.sh` 同步进扩展包；加载实例 `~/extensions/x-risk-audit` 用
+`rsync -a --delete <仓库>/extension/ ~/extensions/x-risk-audit/`。Chrome 会自动重载扩展，之后刷新 x.com 页面生效。popup/options 需在 chrome://extensions 手动点开验证（自动化无法操作 chrome:// 页面）。
+
 ## 依赖
 
 - 抓取通道：Tabbit 浏览器（`tabbit-cli`）或 MiMo 内置浏览器；目标 X 账号已登录。
