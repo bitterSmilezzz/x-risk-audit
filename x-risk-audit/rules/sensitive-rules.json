@@ -180,7 +180,7 @@
     {
       "id": "scam-engagement",
       "label": "话题-诈骗引流",
-      "pattern": "稳赚|保底收益|日入|月入过万|免费领取|空投|airdrop|私信我|看下私信|查下私信|留意.{0,2}私信|加我微信|微信.{0,3}加我|微信号加|加我v\\b|vx[:：]|telegram|飞机号|刷粉|买粉|互粉群|引流|connect wallet|claim now|verify your wallet|保证涨粉|boost your page|求关注|求粉|求互关|请大家.{0,4}(?:关注|支持)|多多支持和关注|记得关注|点点关注|成品号|白号|买号|卖号|收号|号商|账号交易|低价.{0,4}(?:蓝V|蓝v|认证)|(?:蓝V|蓝v).{0,4}低价|代认证|代开会员|(?:封|禁).{0,12}(?:退钱|退款|能退|可以退)|(?:退钱|退款|能退|可以退).{0,12}(?:封|禁)|(?:[✈️🐣][\\s\\S]{0,14}@\\w{2,}[\\s\\S]{0,6}){2,}|(?:followers?|foll,owers|متابع|粉丝)[\\s\\S]{0,24}(?:say|type|drop|comment|reply|私我|说|留言|(?<=[\\s])قل(?=[\\s]))|(?:say|type|drop|comment|reply|私我|说|留言|(?<=[\\s])قل(?=[\\s]))[\\s\\S]{0,24}(?:followers?|foll,owers|متابع|粉丝)|bossting|boosting|follow\\s+each\\s+other|comment\\s+your\\s+handle|active\\s+mutuals",
+      "pattern": "稳赚|保底收益|日入|月入过万|免费领取|空投|airdrop|私信我|看下私信|查下私信|留意.{0,2}私信|加我微信|微信.{0,3}加我|微信号加|加我v\\b|vx[:：]|telegram|飞机号|刷粉|买粉|互粉群|引流|connect wallet|claim now|verify your wallet|保证涨粉|boost your page|低价.{0,4}(?:蓝V|蓝v|认证)|(?:蓝V|蓝v).{0,4}低价|代认证|代开会员|(?:[✈️🐣][\\s\\S]{0,14}@\\w{2,}[\\s\\S]{0,6}){2,}|(?:followers?|foll,owers|متابع|粉丝)[\\s\\S]{0,24}(?:say|type|drop|comment|reply|私我|说|留言|(?<=[\\s])قل(?=[\\s]))|(?:say|type|drop|comment|reply|私我|说|留言|(?<=[\\s])قل(?=[\\s]))[\\s\\S]{0,24}(?:followers?|foll,owers|متابع|粉丝)|bossting|boosting|follow\\s+each\\s+other|comment\\s+your\\s+handle|active\\s+mutuals|(?:出|卖|收|批发)成品号|成品号(?:要的|私我|来)|号商|账号交易",
       "flags": "i",
       "check": null,
       "severity": "low"
@@ -189,7 +189,7 @@
       "id": "vulgar",
       "label": "话题-粗口低俗",
       "severity": "medium",
-      "pattern": "操逼|草逼|操粉|操蛋|鸡巴|牛子|吊大|🐔大|精尽|打飞机|打飞[🐔机]|打胶|母狗(?!.{0,6}(?:生崽|小狗|狗仔|宠物|遛狗))|骚货|发情|黄推|黄网|黄片|求种子|寂寞难耐|单身久了|(?:找|约|叫|点)小姐|做爱|ashawo|\\bhoes?\\b|\\bh0e\\b|\\bcum\\b|(?:打出来了?|射了|缴械).{0,8}(?:舒服|太爽|好爽|虚)|(?:舒服|太爽|好爽).{0,8}(?:打出来|射了)|(?:互关|秒回|关注|新面孔|交友).{0,14}[🍆💦🫦]|[🍆💦🫦].{0,14}(?:互关|秒回|关注|交友)",
+      "pattern": "操逼|草逼|操粉|操蛋|鸡巴|牛子|吊大|🐔大|精尽|打飞机|打飞[🐔机]|打胶|骚货|发情|黄推|黄网|黄片|求种子|寂寞难耐|单身久了|(?:找|约|叫|点)小姐|做爱|ashawo|\\bhoes?\\b|\\bh0e\\b|\\bcum\\b|(?:打出来了?|射了|缴械).{0,8}(?:舒服|太爽|好爽|虚)|(?:舒服|太爽|好爽).{0,8}(?:打出来|射了)",
       "flags": "i",
       "check": null
     }
