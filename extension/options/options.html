@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>X 风控标记 — 规则设置</title>
+<style>
+  body{max-width:640px;margin:24px auto;padding:0 16px;font:14px/1.7 -apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#0f1419;}
+  h1{font-size:18px;}
+  h2{font-size:15px;margin:20px 0 6px;}
+  textarea{width:100%;height:140px;box-sizing:border-box;font:12px/1.6 ui-monospace,Menlo,monospace;padding:8px;border:1px solid #cfd9de;border-radius:8px;}
+  button{padding:6px 14px;border:none;border-radius:999px;background:#1d9bf0;color:#fff;font-size:13px;cursor:pointer;margin-right:8px;}
+  button.ghost{background:#eff3f4;color:#0f1419;}
+  button:hover{filter:brightness(.95);}
+  .tip{font-size:12px;color:#536471;}
+  #status{font-size:12px;color:#1d9bf0;margin-left:8px;}
+</style>
+</head>
+<body>
+  <h1>规则设置</h1>
+
+  <h2>自定义关键词</h2>
+  <p class="tip">每行一个词。命中推文按「自定义词」中风险标记，仅存本机 chrome.storage。</p>
+  <textarea id="keywords" placeholder="例如：&#10;某敏感项目代号&#10;某内部系统名"></textarea>
+  <div><button id="saveKw">保存关键词</button><span id="status"></span></div>
+
+  <h2>规则导入 / 导出</h2>
+  <p class="tip">导出现有规则 JSON；导入的规则整体替换内置规则（存 chrome.storage.local，仅本机）。导入前会校验结构，格式不符会拒绝。</p>
+  <div>
+    <button id="exportBtn">导出当前规则</button>
+    <button id="importBtn" class="ghost">导入规则 JSON</button>
+    <button id="resetBtn" class="ghost">恢复内置规则</button>
+    <input type="file" id="importFile" accept=".json,application/json" style="display:none">
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

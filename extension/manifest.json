@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "X 风控标记 (x-risk-audit)",
+  "version": "0.1.0",
+  "description": "在 x.com 实时扫描时间线推文，命中敏感规则的推文就地标记。只读、零网络请求、数据不出本机。",
+  "permissions": ["storage"],
+  "content_scripts": [
+    {
+      "matches": ["*://x.com/*", "*://twitter.com/*"],
+      "js": [
+        "content/selectors.js",
+        "content/rules.js",
+        "content/scanner.js",
+        "content/marker.js",
+        "content/index.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "X 风控标记"
+  },
+  "options_page": "options/options.html",
+  "web_accessible_resources": [
+    {
+      "resources": ["rules/sensitive-rules.json"],
+      "matches": ["*://x.com/*", "*://twitter.com/*"]
+    }
+  ]
+}

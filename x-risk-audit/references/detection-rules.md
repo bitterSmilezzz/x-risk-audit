@@ -48,7 +48,17 @@
 
 翻墙类特殊说明：每逢假期 X 中文区会流传"刑期"传闻帖（"国庆翻墙三年起步"式），真伪无法证实；检测价值不在帖本身，而在提醒**用户本人的使用窗口风险**，报告里要把这条单独提到最高优先级。
 
-## 4. 定级口径（报告用）
+## 4. severity 字段（扩展标记配色用）
+
+`rules/sensitive-rules.json` 每条规则带 `severity`（high/medium/low），由扩展映射为描边配色；Python 报告定级与之一致但保留人工判断空间：
+
+- **high**：politics、sensitive-figure、censorship-bypass、terror-violence、extreme-speech、hate-discrimination
+- **medium**：全部凭据类、gambling、prostitution、drugs、self-harm-vulgar、自定义词
+- **low**：全部 PII 类、scam-engagement
+
+改 severity 只改 JSON，不改代码；`test_scan.py` 与 `extension/test/test_scanner.mjs` 的冻结预期只断言类别命中，不断言 severity，配色调整不破坏回归。
+
+## 5. 定级口径（报告用）
 
 - **高风险**：涉用户本人安全的（执法传闻类）、暴力煽动、歧视煽动、违法交易。
 - **中风险**：色情低俗、争议言论、刷粉/虚假互动机器人网络。

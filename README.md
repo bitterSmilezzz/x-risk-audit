@@ -54,7 +54,24 @@ MiMo Desktop 用户也可放 `~/.config/mimocode/skills/x-risk-audit/`。
 ## 路线图
 
 - [x] Skill：周期深度检测（抓取 → 规则扫描 → 分级报告）
-- [ ] Chrome 扩展：实时标记时间线敏感推文 —— 架构方案见 [`extension/DESIGN.md`](extension/DESIGN.md)，与 skill 共用同一份规则 JSON
+- [x] Chrome 扩展：实时标记时间线敏感推文（M1–M3，v0.1.0）—— 架构见 [`extension/DESIGN.md`](extension/DESIGN.md)，与 skill 共用同一份规则 JSON
+
+## Chrome 实时标记扩展（extension/）
+
+刷 x.com 时命中敏感规则的推文当场描边 + 徽标（高=红 / 中=橙 / 低=黄），悬停看命中词与类别，popup 可总开关/分类开关/只看高风险，options 支持自定义关键词与规则导入导出。只读、零网络请求、推文内容不过服务器。
+
+```bash
+# 安装（开发者模式加载已解包扩展）
+# Chrome → chrome://extensions → 打开开发者模式 → 加载已解包的扩展 → 选本仓库 extension/ 目录
+
+# 规则同步：改规则只改 x-risk-audit/rules/sensitive-rules.json，然后
+bash extension/sync-rules.sh
+
+# 测试
+node extension/test/test_scanner.mjs        # JS 扫描器 vs Python 冻结预期（34 条）
+python3 x-risk-audit/scripts/test_scan.py   # Python 扫描器冻结预期
+python3 extension/test/make-fixture-page.py # 生成仿 X 集成测试页（再起本地 http 服务打开验证）
+```
 
 ## 依赖
 

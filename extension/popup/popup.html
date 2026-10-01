@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>X 风控标记</title>
+<style>
+  body{width:240px;margin:0;padding:12px 14px;font:13px/1.7 -apple-system,'PingFang SC','Microsoft YaHei',sans-serif;color:#0f1419;background:#fff;}
+  h1{font-size:14px;margin:0 0 8px;}
+  label{display:flex;align-items:center;gap:8px;padding:3px 0;cursor:pointer;}
+  .row{border-top:1px solid #eff3f4;margin-top:8px;padding-top:8px;}
+  a{color:#1d9bf0;text-decoration:none;font-size:12px;}
+  a:hover{text-decoration:underline;}
+  .tip{font-size:11px;color:#536471;margin-top:8px;}
+</style>
+</head>
+<body>
+  <h1>X 风控标记</h1>
+  <label><input type="checkbox" id="enabled"> 启用实时标记</label>
+  <label><input type="checkbox" id="onlyHigh"> 只看高风险</label>
+  <div class="row">
+    <label><input type="checkbox" class="sec" data-sec="pii"> 个人隐私（PII）</label>
+    <label><input type="checkbox" class="sec" data-sec="credentials"> 凭据密钥</label>
+    <label><input type="checkbox" class="sec" data-sec="topics"> 敏感话题</label>
+    <label><input type="checkbox" class="sec" data-sec="custom"> 自定义词</label>
+  </div>
+  <div class="row"><a href="#" id="openOptions">规则导入 / 导出 / 自定义词 →</a></div>
+  <div class="tip">只读标记 · 零网络请求 · 数据不出本机</div>
+  <script src="popup.js"></script>
+</body>
+</html>

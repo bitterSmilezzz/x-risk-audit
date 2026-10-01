@@ -6,6 +6,10 @@ scan_result.txt
 *风控报告*.md
 *检测报告*.md
 
+# 集成测试生成物（make-fixture-page.py 每次生成）
+extension/test/rules.inline.js
+extension/test/fixture-page.html
+
 # Python
 __pycache__/
 *.py[cod]
