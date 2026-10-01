@@ -1,6 +1,6 @@
 ---
 name: x-risk-audit
-description: 对 X（Twitter）账号执行一轮风控检测：通过已登录浏览器只读抓取「正在关注」时间线、本人发帖与回复，用规则引擎扫描个人隐私（手机号/身份证/银行卡/住址）、凭据密钥（API Key/Token/私钥）、敏感违规话题（政治/翻墙/暴恐/歧视/色情/赌博/毒品）与诈骗引流内容，人工复核误报后输出分级处置报告。Use when the user asks to “帮我做一轮X风控检测”“检查我关注的博主有没有发敏感信息”“检查我发的帖子有没有涉及敏感信息”“X账号风险自查”“twitter风控”“X敏感信息扫描”。只读检测：不代填登录、不发布、不点赞、不转发。
+description: 对 X（Twitter）账号执行一轮风控检测：通过已登录浏览器只读抓取「正在关注」时间线、本人发帖与回复，用规则引擎扫描个人隐私（手机号/身份证/银行卡/住址）、凭据密钥（API Key/Token/私钥）、敏感违规话题（政治/翻墙/暴恐/歧视/色情/赌博/毒品）与诈骗引流内容，人工复核误报后输出分级处置报告。Use when the user asks to “帮我做一轮X风控检测”“检查我关注的博主有没有发敏感信息”“检查我发的帖子有没有涉及敏感信息”“X账号风险自查”“twitter风控”“X敏感信息扫描”“帮我查下X上有没有敏感内容”“X敏感内容检查”。只读检测：不代填登录、不发布、不点赞、不转发。
 ---
 
 # x-risk-audit — X 账号风控检测
@@ -35,23 +35,11 @@ description: 对 X（Twitter）账号执行一轮风控检测：通过已登录�
 
 ### Step 2 — 抓取三类数据
 
-先读 `references/x-scraping-playbook.md`，里面有完整可抄的 JS。三个必须记住的点：
+先读 `references/x-scraping-playbook.md`，里面有完整可抄的 JS、字段定义（u/t/d/l/s）与落盘格式。三个必须记住的点：
 
 1. **`x.com/home` 默认是"为你推荐"流**，含非关注账号，不符合口径。必须先点「正在关注」标签（`getByRole("tab", { name: /关注/ })`）。
 2. **X 虚拟滚动会删掉滑出屏幕的推文**：必须"滚动 → 等 1.3s 稳定 → 抽取 → 再等 0.9s 二次抽取"，且**单个 nodejs 程序内一次性完成抓取并 `fs.writeFileSync` 落盘**——不要把累积状态寄托在跨调用全局变量上（会静默丢数据，本次实测丢过 2 条）。
 3. 三个目标页面：关注流（`/home` + 关注标签）、本人帖子（`/USERNAME`）、本人回复（`/USERNAME/with_replies`）。合并时按 status 链接去重；关注流非严格时间序，多轮抓取要合并。
-
-数据格式（扫描器吃这个结构）：
-
-```json
-{
-  "following":  [{"u":"作者名块","t":"正文","d":"ISO时间","l":"帖子链接","s":"转帖上下文"}],
-  "myPosts":    [同结构],
-  "myReplies":  [同结构，含互动对象原文，扫描时按主账号过滤]
-}
-```
-
-`u` 取 `[data-testid="User-Name"]` 的 innerText（含昵称/@handle/时间）；`t` 取 `[data-testid="tweetText"]`；`d` 取 `<time datetime>`；`l` 取首个 `a[href*="/status/"]`。
 
 ### Step 3 — 运行扫描器
 
@@ -59,7 +47,13 @@ description: 对 X（Twitter）账号执行一轮风控检测：通过已登录�
 python3 scripts/risk_scan.py <合并后的.json> --own-handle <用户handle> [--out findings.tsv]
 ```
 
-规则全集与误报处置见 `references/detection-rules.md`。输出为 TSV：分组、类别、作者、日期、命中词、帖子链接、正文摘要；汇总数走 stderr。
+规则是**单一数据源** `rules/sensitive-rules.json`（Python 扫描器与未来的 Chrome 扩展共用）：改规则只改这个 JSON，不要动 risk_scan.py 里的正则。改动规则后必须跑回归：
+
+```bash
+python3 scripts/test_scan.py   # 33 条合成 fixtures 的冻结预期，PASS 才算改对
+```
+
+规则全集、误报处置与定级口径见 `references/detection-rules.md`；输出 TSV 列为分组、类别、作者、日期、命中词、帖子链接、正文摘要，汇总数走 stderr。
 
 ### Step 4 — 人工复核（不可跳过）
 
@@ -74,14 +68,7 @@ python3 scripts/risk_scan.py <合并后的.json> --own-handle <用户handle> [--
 
 ### Step 5 — 写报告并交付
 
-报告结构（本次模板见下），Markdown 落盘到工作目录并 present_files：
-
-1. 检测概况（对象、时间、口径、样本量、方法）
-2. 结论速览表（关注博主 vs 本人发帖，各一行定级）
-3. 关注博主敏感内容明细：每条含作者、链接、摘要、风险说明、处置建议
-4. 本人帖子检测结果：逐类（PII/凭据/话题/引流）说明"未检出"，附习惯提醒（如别贴真实 key、转卖别附序列号）
-5. 处置建议：分"立即做 / 近期保持 / 持续保持"三档，每条可执行
-6. 覆盖度与局限（滚动抓取的理论漏检、图片 alt 未检、喜欢列表未检）
+按 `references/report-template.md` 的骨架写，Markdown 落盘到工作目录并 present_files。骨架六节：检测概况（对象、时间、口径、样本量、方法）→ 结论速览表 → 关注博主敏感内容明细（作者、链接、摘要、风险说明、处置建议）→ 本人帖子检测结果（逐类说明未检出，附习惯提醒）→ 处置建议（立即做/近期保持/持续保持三档）→ 覆盖度与局限。
 
 ### Step 6 — 清理
 

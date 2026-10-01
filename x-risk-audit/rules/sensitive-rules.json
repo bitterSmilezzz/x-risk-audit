@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "note": "x-risk-audit 规则单一数据源。risk_scan.py 与 Chrome 扩展 content script 共用本文件；新增/修改规则只改这里。pattern 为 JS/Python 双兼容正则字符串（lookbehind 两端引擎均支持，MV3 目标 Chrome 110+）。flags 可含 i。check 为 Python 侧附加校验：cn_id=身份证出生日期合法性，luhn=银行卡 Luhn。",
+  "pii": [
+    { "id": "cn-mobile", "label": "PII-中国手机号", "pattern": "(?<!\\d)1[3-9]\\d{9}(?!\\d)", "check": null },
+    { "id": "cn-id", "label": "PII-身份证号", "pattern": "(?<!\\d)\\d{17}[\\dXx](?!\\d)", "check": "cn_id" },
+    { "id": "bank-card", "label": "PII-银行卡号", "pattern": "(?<!\\d)\\d{16,19}(?!\\d)", "check": "luhn" },
+    { "id": "email", "label": "PII-电子邮箱", "pattern": "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}", "check": null },
+    { "id": "address-number", "label": "PII-地址门牌", "pattern": "(?:路|街|巷|道|弄|号|栋|单元|室|层)\\s*\\d+", "check": null },
+    { "id": "address-keyword", "label": "PII-住址关键词", "pattern": "(?:我家在|住在|地址是|收货地址|现居|家住)[^\\n。]{0,30}", "check": null }
+  ],
+  "credentials": [
+    { "id": "sk-key", "label": "凭据-sk-密钥", "pattern": "\\bsk-[A-Za-z0-9_\\-]{16,}", "check": null },
+    { "id": "google-api-key", "label": "凭据-GoogleAPIKey", "pattern": "\\bAIza[0-9A-Za-z_\\-]{30,}", "check": null },
+    { "id": "github-token", "label": "凭据-GitHubToken", "pattern": "\\b(?:ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{20,}", "check": null },
+    { "id": "aws-access-key", "label": "凭据-AWSAccessKey", "pattern": "\\b(?:AKIA|ASIA)[0-9A-Z]{16}\\b", "check": null },
+    { "id": "slack-token", "label": "凭据-SlackToken", "pattern": "\\bxox[baprs]-[0-9A-Za-z\\-]{10,}", "check": null },
+    { "id": "eth-private-key", "label": "凭据-私钥0x64hex", "pattern": "\\b0x[a-fA-F0-9]{64}\\b", "check": null },
+    { "id": "jwt", "label": "凭据-BearerJWT", "pattern": "\\beyJ[A-Za-z0-9_\\-]{10,}\\.[A-Za-z0-9_\\-]{10,}", "check": null },
+    { "id": "cred-assignment", "label": "凭据-密钥赋值", "pattern": "(?:api[_\\-]?key|apikey|access[_\\-]?token|secret|passwd|password|pwd|bearer|私钥|密钥|密码|令牌|访问凭证|授权码)\\s*[:=：是为]?\\s*[\"']?[A-Za-z0-9_\\-]{10,}", "flags": "i", "check": null }
+  ],
+  "topics": [
+    { "id": "politics", "label": "话题-政治敏感", "pattern": "六四|天安门事件|法[轮輪][功功]|疆独|藏独|台独|港独|反送中|推翻共产党|颠覆国家|暴政|独裁政权|中共倒台|反动派|民运人士|反革命", "check": null },
+    { "id": "sensitive-figure", "label": "话题-敏感人物", "pattern": "习近平|李克强|胡锦涛|温家宝|江泽民|毛泽东|邓小平|彭丽媛|薄熙来", "check": null },
+    { "id": "censorship-bypass", "label": "话题-翻墙工具", "pattern": "科学上网|翻墙|梯子|机场订阅|节点订阅|clash|v2ray|shadowrocket|trojan|vpn", "flags": "i", "check": null },
+    { "id": "gambling", "label": "话题-赌博博彩", "pattern": "博彩|菠菜|网赌|时时彩|快三|百家乐|六合彩|跑分|资金盘|杀猪盘|赌狗", "check": null },
+    { "id": "prostitution", "label": "话题-色情招嫖", "pattern": "约炮|招嫖|嫖娼|援交|裸聊|色情直播|黄播|福利姬|卖淫|嫖客|卖片", "check": null },
+    { "id": "drugs", "label": "话题-毒品", "pattern": "冰毒|大麻|海洛因|k粉|摇头丸|贩毒|吸毒|罂粟", "check": null },
+    { "id": "terror-violence", "label": "话题-暴恐极端", "pattern": "炸药|炸弹|爆炸物|圣战|isis|恐怖袭击|灭门|砍杀|报复社会|推翻政府|武装斗争", "check": null },
+    { "id": "extreme-speech", "label": "话题-极端言行", "pattern": "毒死|暗杀|砍死|杀光|屠[杀村]|活该|去死", "check": null },
+    { "id": "self-harm-vulgar", "label": "话题-自残低俗", "pattern": "直播吃|吃屎|自残|割腕|烧炭|跳楼自|轻生|直播自杀", "check": null },
+    { "id": "hate-discrimination", "label": "话题-歧视仇恨", "pattern": "老黑|黑鬼|倪哥|支那|黄祸|纳粹|母猪|田园女权|easy girl|easygirl", "flags": "i", "check": null },
+    { "id": "scam-engagement", "label": "话题-诈骗引流", "pattern": "稳赚|保底收益|日入|月入过万|免费领取|空投|airdrop|私信我|加微信|加我v|vx[:：]|telegram|飞机号|刷粉|买粉|互粉群|引流|connect wallet|claim now|verify your wallet|保证涨粉|boost your page", "flags": "i", "check": null }
+  ]
+}

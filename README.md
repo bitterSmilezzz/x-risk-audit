@@ -43,9 +43,18 @@ MiMo Desktop 用户也可放 `~/.config/mimocode/skills/x-risk-audit/`。
 | 文件 | 内容 |
 |---|---|
 | [`SKILL.md`](x-risk-audit/SKILL.md) | Skill 本体：安全纪律、六步工作流、故障处置 |
-| [`scripts/risk_scan.py`](x-risk-audit/scripts/risk_scan.py) | 扫描器：PII（含身份证日期校验 / 银行卡 Luhn / 推文 ID 排除）、凭据特征、敏感话题词库 |
+| [`rules/sensitive-rules.json`](x-risk-audit/rules/sensitive-rules.json) | **规则单一数据源**：PII / 凭据 / 敏感话题三类规则，Python 扫描器与 Chrome 扩展共用，JS/Python 双兼容正则 |
+| [`scripts/risk_scan.py`](x-risk-audit/scripts/risk_scan.py) | 扫描器：消费规则 JSON，含身份证日期校验 / 银行卡 Luhn / 推文 ID 排除 |
+| [`scripts/test_scan.py`](x-risk-audit/scripts/test_scan.py) | 回归测试：33 条合成 fixtures 的冻结预期（`python3 scripts/test_scan.py`） |
 | [`references/detection-rules.md`](x-risk-audit/references/detection-rules.md) | 规则全集：查什么、为什么、已知误报、定级口径 |
 | [`references/x-scraping-playbook.md`](x-risk-audit/references/x-scraping-playbook.md) | X 抓取手册：关注流标签切换、虚拟滚动补捞、单程序落盘、quote tweet 陷阱 |
+| [`references/report-template.md`](x-risk-audit/references/report-template.md) | 风控报告模板：六节骨架 + 填写要点 |
+| [`extension/DESIGN.md`](extension/DESIGN.md) | Chrome 实时标记扩展架构方案（MV3，规划中） |
+
+## 路线图
+
+- [x] Skill：周期深度检测（抓取 → 规则扫描 → 分级报告）
+- [ ] Chrome 扩展：实时标记时间线敏感推文 —— 架构方案见 [`extension/DESIGN.md`](extension/DESIGN.md)，与 skill 共用同一份规则 JSON
 
 ## 依赖
 

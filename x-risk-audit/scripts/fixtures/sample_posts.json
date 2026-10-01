@@ -1,0 +1,42 @@
+{
+  "following": [
+    { "u": "sample_alice\n@sample_alice\n· 1小时", "t": "下午开会，联系我 13800138000", "d": "2026-10-01T10:00:00.000Z", "l": "https://x.com/sample_alice/status/9000000000000000001", "s": "" },
+    { "u": "sample_bob\n@sample_bob\n· 2小时", "t": "证件 110101199003078516 帮我确认一下", "d": "2026-10-01T09:00:00.000Z", "l": "https://x.com/sample_bob/status/9000000000000000002", "s": "" },
+    { "u": "sample_carol\n@sample_carol\n· 2小时", "t": "银行卡 4111111111111111 刚才转错了", "d": "2026-10-01T09:30:00.000Z", "l": "https://x.com/sample_carol/status/9000000000000000003", "s": "" },
+    { "u": "sample_dave\n@sample_dave\n· 3小时", "t": "邮箱 sample@example.com 随时骚扰", "d": "2026-10-01T08:00:00.000Z", "l": "https://x.com/sample_dave/status/9000000000000000004", "s": "" },
+    { "u": "sample_eve\n@sample_eve\n· 3小时", "t": "收货地址写在 幸福路12号", "d": "2026-10-01T08:30:00.000Z", "l": "https://x.com/sample_eve/status/9000000000000000005", "s": "" },
+    { "u": "sample_frank\n@sample_frank\n· 4小时", "t": "大学时我们住在同一层楼，半夜总能听见排练", "d": "2026-10-01T07:00:00.000Z", "l": "https://x.com/sample_frank/status/9000000000000000006", "s": "" },
+    { "u": "sample_grace\n@sample_grace\n· 4小时", "t": "看这条推 https://x.com/sample/status/2105672503213662647 笑死", "d": "2026-10-01T07:30:00.000Z", "l": "https://x.com/sample_grace/status/9000000000000000007", "s": "" },
+    { "u": "sample_heidi\n@sample_heidi\n· 5小时", "t": "配置里写死了 sk-abcdef1234567890abcdef 记得删", "d": "2026-10-01T06:00:00.000Z", "l": "https://x.com/sample_heidi/status/9000000000000000008", "s": "" },
+    { "u": "sample_ivan\n@sample_ivan\n· 5小时", "t": "gh token 是 ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789", "d": "2026-10-01T06:30:00.000Z", "l": "https://x.com/sample_ivan/status/9000000000000000009", "s": "" },
+    { "u": "sample_judy\n@sample_judy\n· 6小时", "t": "AWS key AKIAIOSFODNN7EXAMPLE 好像泄漏了", "d": "2026-10-01T05:00:00.000Z", "l": "https://x.com/sample_judy/status/9000000000000000010", "s": "" },
+    { "u": "sample_karl\n@sample_karl\n· 6小时", "t": "私钥 0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa 别截图外传", "d": "2026-10-01T05:30:00.000Z", "l": "https://x.com/sample_karl/status/9000000000000000011", "s": "" },
+    { "u": "sample_laura\n@sample_laura\n· 7小时", "t": "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0", "d": "2026-10-01T04:00:00.000Z", "l": "https://x.com/sample_laura/status/9000000000000000012", "s": "" },
+    { "u": "sample_mallory\n@sample_mallory\n· 7小时", "t": "api_key=AbCdEfGhIjKlMnOpQrStUvWxYz0123456789 别外传", "d": "2026-10-01T04:30:00.000Z", "l": "https://x.com/sample_mallory/status/9000000000000000013", "s": "" },
+    { "u": "sample_nick\n@sample_nick\n· 8小时", "t": "国庆这几天翻墙小心点，别顶风", "d": "2026-10-01T03:00:00.000Z", "l": "https://x.com/sample_nick/status/9000000000000000014", "s": "" },
+    { "u": "sample_olivia\n@sample_olivia\n· 8小时", "t": "必须毒死一个你会选谁", "d": "2026-10-01T03:30:00.000Z", "l": "https://x.com/sample_olivia/status/9000000000000000015", "s": "" },
+    { "u": "sample_pam\n@sample_pam\n· 9小时", "t": "广州老黑真的多", "d": "2026-10-01T02:00:00.000Z", "l": "https://x.com/sample_pam/status/9000000000000000016", "s": "" },
+    { "u": "sample_quinn\n@sample_quinn\n· 9小时", "t": "Say YES and I will boost your page quickly", "d": "2026-10-01T02:30:00.000Z", "l": "https://x.com/sample_quinn/status/9000000000000000017", "s": "" },
+    { "u": "sample_rosa\n@sample_rosa\n· 10小时", "t": "网赌平台套路深，别信", "d": "2026-10-01T01:00:00.000Z", "l": "https://x.com/sample_rosa/status/9000000000000000018", "s": "" },
+    { "u": "sample_sam\n@sample_sam\n· 10小时", "t": "同城招嫖小广告又来了", "d": "2026-10-01T01:30:00.000Z", "l": "https://x.com/sample_sam/status/9000000000000000019", "s": "" },
+    { "u": "sample_tina\n@sample_tina\n· 11小时", "t": "冰毒千万别碰，家破人亡", "d": "2026-10-01T00:00:00.000Z", "l": "https://x.com/sample_tina/status/9000000000000000020", "s": "" },
+    { "u": "sample_ursula\n@sample_ursula\n· 11小时", "t": "他说要直播吃屎，恶心", "d": "2026-10-01T00:30:00.000Z", "l": "https://x.com/sample_ursula/status/9000000000000000021", "s": "" },
+    { "u": "sample_victor\n@sample_victor\n· 12小时", "t": "街头法轮功横幅没人管吗", "d": "2026-10-01T00:15:00.000Z", "l": "https://x.com/sample_victor/status/9000000000000000022", "s": "" },
+    { "u": "sample_wendy\n@sample_wendy\n· 12小时", "t": "毛泽东选集又火起来了", "d": "2026-10-01T00:10:00.000Z", "l": "https://x.com/sample_wendy/status/9000000000000000023", "s": "" },
+    { "u": "sample_xavier\n@sample_xavier\n· 13小时", "t": "网上制作炸药的教程必须举报", "d": "2026-10-01T00:05:00.000Z", "l": "https://x.com/sample_xavier/status/9000000000000000024", "s": "" },
+    { "u": "sample_yara\n@sample_yara\n· 13小时", "t": "今天天气不错，适合出门跑步", "d": "2026-10-01T00:01:00.000Z", "l": "https://x.com/sample_yara/status/9000000000000000025", "s": "" },
+    { "u": "sample_zack\n@sample_zack\n· 13小时", "t": "New model drops today, pricing looks great", "d": "2026-10-01T00:02:00.000Z", "l": "https://x.com/sample_zack/status/9000000000000000026", "s": "" },
+    { "u": "sample_alan\n@sample_alan\n· 14小时", "t": "localhost:3000 端口又被占了", "d": "2026-10-01T00:03:00.000Z", "l": "https://x.com/sample_alan/status/9000000000000000027", "s": "" },
+    { "u": "sample_bella\n@sample_bella\n· 14小时", "t": "订单 2026100115300012345678 帮忙查一下", "d": "2026-10-01T00:04:00.000Z", "l": "https://x.com/sample_bella/status/9000000000000000028", "s": "" }
+  ],
+  "myPosts": [
+    { "u": "yg6888\n@yg6888\n· 1小时", "t": "试了下新模型，量大管饱，重置也快", "d": "2026-10-01T11:00:00.000Z", "l": "https://x.com/yg6888/status/9100000000000000001", "s": "" },
+    { "u": "yg6888\n@yg6888\n· 2小时", "t": "改用 skill 把密钥给 agent 才手动解决", "d": "2026-10-01T11:30:00.000Z", "l": "https://x.com/yg6888/status/9100000000000000002", "s": "" },
+    { "u": "yg6888\n@yg6888\n· 3小时", "t": "我手机 13800138000 存错了 group", "d": "2026-10-01T12:00:00.000Z", "l": "https://x.com/yg6888/status/9100000000000000003", "s": "" }
+  ],
+  "myReplies": [
+    { "u": "yg6888\n@yg6888\n· 1小时", "t": "确实，我用 plus 只敢选中", "d": "2026-10-01T13:00:00.000Z", "l": "https://x.com/yg6888/status/9200000000000000001", "s": "" },
+    { "u": "yg6888\n@yg6888\n· 2小时", "t": "毒死一个算了呵呵", "d": "2026-10-01T13:30:00.000Z", "l": "https://x.com/yg6888/status/9200000000000000002", "s": "" },
+    { "u": "sample_partner\n@sample_partner\n· 3小时", "t": "同城招嫖联系我", "d": "2026-10-01T14:00:00.000Z", "l": "https://x.com/sample_partner/status/9200000000000000003", "s": "" }
+  ]
+}

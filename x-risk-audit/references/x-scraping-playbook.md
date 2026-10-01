@@ -79,7 +79,19 @@ return { total: items.length };
 
 **quote tweet 陷阱**：主页时间线里，你引用别人的推文会把**原作者**渲染在 User-Name 里（如引用官方活动帖）。抽到原作者 ≠ 漏抓，按"引用的内容"归类，别算成账号本人帖子。
 
-## 4. 数据合并
+## 4. 数据格式与合并
+
+落盘的 JSON 结构（扫描器与合并脚本都吃这个）：
+
+```json
+{
+  "following":  [{"u":"作者名块","t":"正文","d":"ISO时间","l":"帖子链接","s":"转帖上下文"}],
+  "myPosts":    [同结构],
+  "myReplies":  [同结构，含互动对象原文，扫描时按主账号过滤]
+}
+```
+
+字段定义见第 1 节抽取函数：`u`=User-Name innerText（昵称/@handle/相对时间）、`t`=tweetText、`d`=time[datetime]、`l`=首个 `a[href*="/status/"]`（去重键）、`s`=socialContext（"X 已转帖"等）。
 
 ```bash
 python3 - <<'PY'
@@ -111,10 +123,12 @@ python3 scripts/risk_scan.py x_risk_merged.json --own-handle <handle> --out find
 | 转载上下文 | `socialContext` 为"X 已转帖"时正文是原推文 | 标注为转帖，作者按原推文算 |
 | 推文 ID 误判 PII | 19 位 snowflake 命中身份证/银行卡正则 | 脚本已做长度/校验排除，仍抽查 |
 
-## 6. 清理
+## 6. 清理与自测
 
 ```bash
 "$HOME/.local/bin/tabbit-cli" finish --task "X 风控检测"   # 释放接管、保留用户标签页
 ```
 
 IAB 通道：关掉本任务 `tabs.new()` 出来的标签页，保留用户原有标签页。抓取数据文件只在本地，进 `.gitignore`，不提交。
+
+扫描规则在 `../rules/sensitive-rules.json`（单一数据源，Chrome 扩展共用）；改完规则跑 `python3 scripts/test_scan.py` 回归；实时检测形态见 `../../extension/DESIGN.md`。
