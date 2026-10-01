@@ -151,6 +151,17 @@
     "https://x.com/sample_fy/status/9400000000000000014": [],
     "https://x.com/sample_rv/status/950000000000000001": [],
     "https://x.com/sample_rv/status/950000000000000002": [],
-    "https://x.com/sample_rv/status/950000000000000003": []
+    "https://x.com/sample_rv/status/950000000000000003": [],
+    "https://x.com/sample_pol/status/960000000000000001": [
+      "话题-政治敏感"
+    ],
+    "https://x.com/sample_pol/status/960000000000000002": [
+      "话题-政治敏感"
+    ],
+    "https://x.com/sample_pol/status/960000000000000003": [],
+    "https://x.com/sample_pol/status/960000000000000004": [],
+    "https://x.com/sample_pol/status/960000000000000005": [
+      "话题-政治敏感"
+    ]
   }
 }
