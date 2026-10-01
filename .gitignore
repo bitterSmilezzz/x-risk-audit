@@ -1,0 +1,12 @@
+# 抓取到的个人数据与报告只留本地，绝不入库
+x_risk_*.json
+x_follow_*.json
+findings.tsv
+scan_result.txt
+*风控报告*.md
+*检测报告*.md
+
+# Python
+__pycache__/
+*.py[cod]
+.DS_Store

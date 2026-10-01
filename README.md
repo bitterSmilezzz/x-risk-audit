@@ -1,0 +1,57 @@
+# x-risk-audit
+
+对 X（Twitter）账号执行一轮**风控检测**的 Agent Skill：只读抓取「正在关注」时间线、本人发帖与回复，规则引擎扫描个人隐私、凭据密钥、敏感违规话题与诈骗引流内容，人工复核后输出分级处置报告。
+
+一次真实检测的产物形态：关注流 195 条 → 9 条有效风险帖（执法传闻 / 极端暴力 / 种族歧视 / 色情低俗 / 刷粉机器人）；本人 13 条原创帖 + 30 余条回复零命中。
+
+## 安全边界
+
+- **只读**：不发帖、不点赞、不转发、不关注/取关。处置建议写进报告，由用户本人执行。
+- **不代登录**：凭证属于用户操作；通道未登录时交还用户登录。
+- **数据不出本机**：抓取数据只落本地并进 `.gitignore`；本仓库不含任何真实账号数据。
+
+## 安装
+
+把仓库内的 `x-risk-audit/` 目录（skill 本体）放进任一 skills 根目录：
+
+```bash
+# 方式一：克隆后软链
+git clone https://github.com/bitterSmilezzz/x-risk-audit.git
+ln -s "$PWD/x-risk-audit/x-risk-audit" "$HOME/.agents/skills/x-risk-audit"
+
+# 方式二：直接拷贝
+cp -R x-risk-audit/x-risk-audit "$HOME/.agents/skills/"
+```
+
+MiMo Desktop 用户也可放 `~/.config/mimocode/skills/x-risk-audit/`。
+
+## 触发方式
+
+对 Agent 说："帮我做一轮 X 风控检测" / "检查我关注的博主有没有发敏感信息" / "检查我发的帖子有没有涉及敏感信息" / "X 账号风险自查"。
+
+## 工作原理
+
+```
+确认口径/范围(弹窗)
+   → 接管已登录浏览器(Tabbit 优先，IAB 兜底)
+   → 抓取：关注流(正在关注) + 本人帖子 + 本人回复
+   → scripts/risk_scan.py 规则扫描
+   → 人工复核误报
+   → 分级处置报告
+```
+
+| 文件 | 内容 |
+|---|---|
+| [`SKILL.md`](x-risk-audit/SKILL.md) | Skill 本体：安全纪律、六步工作流、故障处置 |
+| [`scripts/risk_scan.py`](x-risk-audit/scripts/risk_scan.py) | 扫描器：PII（含身份证日期校验 / 银行卡 Luhn / 推文 ID 排除）、凭据特征、敏感话题词库 |
+| [`references/detection-rules.md`](x-risk-audit/references/detection-rules.md) | 规则全集：查什么、为什么、已知误报、定级口径 |
+| [`references/x-scraping-playbook.md`](x-risk-audit/references/x-scraping-playbook.md) | X 抓取手册：关注流标签切换、虚拟滚动补捞、单程序落盘、quote tweet 陷阱 |
+
+## 依赖
+
+- 抓取通道：Tabbit 浏览器（`tabbit-cli`）或 MiMo 内置浏览器；目标 X 账号已登录。
+- 扫描器：Python 3.8+，无第三方依赖。
+
+## License
+
+MIT，见 [LICENSE](LICENSE)。
