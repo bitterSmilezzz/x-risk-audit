@@ -49,7 +49,8 @@ MiMo Desktop 用户也可放 `~/.config/mimocode/skills/x-risk-audit/`。
 | [`references/detection-rules.md`](x-risk-audit/references/detection-rules.md) | 规则全集：查什么、为什么、已知误报、定级口径 |
 | [`references/x-scraping-playbook.md`](x-risk-audit/references/x-scraping-playbook.md) | X 抓取手册：关注流标签切换、虚拟滚动补捞、单程序落盘、quote tweet 陷阱 |
 | [`references/report-template.md`](x-risk-audit/references/report-template.md) | 风控报告模板：六节骨架 + 填写要点 |
-| [`extension/DESIGN.md`](extension/DESIGN.md) | Chrome 实时标记扩展架构方案（MV3，规划中） |
+| [`extension/DESIGN.md`](extension/DESIGN.md) | Chrome 实时标记扩展架构方案（MV3） |
+| [`docs/validation-report-2026-10-01.md`](docs/validation-report-2026-10-01.md) | 规则双通道校验报告：538 条关注流 + 112 条推荐流，TP/FP/FN 对照与修复记录 |
 
 ## 路线图
 
