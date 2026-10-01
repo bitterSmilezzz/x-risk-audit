@@ -14,3 +14,14 @@ extension/test/fixture-page.html
 __pycache__/
 *.py[cod]
 .DS_Store
+
+# 工作区数据与分析产物（抓取数据/研判记录/校准脚本/报告），只留本地
+.work/
+validate_*.json
+ai_judgments*
+calibrate*.mjs
+validate_run_rules.mjs
+items_numbered.txt
+foryou_numbered.txt
+rule_hits_follows.json
+*审查清单*.md
